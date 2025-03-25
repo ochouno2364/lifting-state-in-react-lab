@@ -35,7 +35,8 @@ const App = (props) => {
   };
 
   const removeFromBurger = (event) => {
-
+ const myBurger = [...state];
+ setState()
   };
 
 
