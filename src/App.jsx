@@ -28,15 +28,17 @@ const App = (props) => {
   ];
 
 
-  const [state, setState] = useState([]);
+  const [stack, setStack] = useState([]);
 
-  const addToBurger = (event) => {
-  setState((state) => ({...state, [event.target.name]: event.target.value}))
+  const handleAddToBurger = (ingredient) => {
+  console.log(ingredient);
+  const myBurger = [ingredient, ...stack];
+  setStack([...myBurger])
   };
 
-  const removeFromBurger = (event) => {
- const myBurger = [...state];
- setState()
+  const handleRemoveFromBurger = (index) => {
+ const newBurger = stack.filter((ingredient, i) => i !== index);
+ setStack(newBurger)
   };
 
 
@@ -45,8 +47,12 @@ const App = (props) => {
     <main>
       <h1>Burger Stacker</h1>
       <section>
-        <IngredientList availableIngredients={availableIngredients} onClick={addToBurger}/>
-        <BurgerStack state={state} onClick={removeFromBurger}/>
+        <IngredientList
+         availableIngredients={availableIngredients}
+         handleAddToBurger={handleAddToBurger}/>
+        <BurgerStack 
+        stack={stack} 
+        handleRemoveFromBurger={handleRemoveFromBurger}/>
       
       </section>
     </main>
